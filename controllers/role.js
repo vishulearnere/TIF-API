@@ -1,25 +1,16 @@
-// const { StatusCodes } = require('http-status-codes')
-// const mongoose = require('mongoose')
-// const Role = require('../models/Role')
-// const { BadRequestError, UnauthenticatedError } = require('../errors')
-// const bcrypt = require('bcryptjs')
-// require('dotenv').config()
-// const jwt = require('jsonwebtoken')
 
-import { StatusCodes } from 'http-status-codes'
-import mongoose from 'mongoose'
-import { BadRequestError, UnauthenticatedError } from '../errors/index.js'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-
-// Import your custom models and other dependencies (adjust the paths accordingly)
 import Role from '../models/Role.js'
+import { pagination } from '../utils/index.js';
+import { StatusCodes } from 'http-status-codes'
+import { BadRequestError, UnauthenticatedError } from '../errors/index.js'
+
+
 
 // Load environment variables
 import dotenv from 'dotenv'
 dotenv.config()
 
-
+// Create Role
 const createRole = async(req,res) =>{
     const rolesArray = ['Community Admin', 'Community Member', 'Community Moderator']
     const {name} = req.body
@@ -34,21 +25,21 @@ const createRole = async(req,res) =>{
      
     const role = await Role.create({ ...req.body })
     return res.status(StatusCodes.CREATED).json({status:true,content:{data:role}})
-
-
 }
+
+// Get All Roles
 const getAllRoles = async(req,res) =>{
     const allRoles = await Role.find({ })
     console.log(allRoles)
 
-
+    const {meta, start,last} = await pagination(req,allRoles.length)
    // Pagination 
-    const meta = {}
-    meta.total = allRoles.length
-    meta.pages = Math.ceil(meta.total / 10)
-    meta.page = req.query.page || 1
-    const start = (meta.page -1) * 10
-    const last = (meta.page ) * 10 
+    // const meta = {}
+    // meta.total = allRoles.length
+    // meta.pages = Math.ceil(meta.total / 10)
+    // meta.page = req.query.page || 1
+    // const start = (meta.page -1) * 10
+    // const last = (meta.page ) * 10 
 
   console.log(meta,start,last)
 return res

@@ -1,7 +1,4 @@
-// require('dotenv').config()
-// const jwt = require('jsonwebtoken')
-// const User = require('../models/User')
-// const { UnauthenticatedError } = require('../errors')
+
 
 // Import required modules using ES6 import statements
 import dotenv from 'dotenv';

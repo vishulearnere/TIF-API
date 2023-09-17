@@ -72,23 +72,6 @@ function slugify(text) {
 }
 
 
-CommunitySchema.methods.createJWT = async function () {
-  // while giving async keyword to above function it gives error
-  return jwt.sign(
-    { userId: this._id, name: this.name },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: process.env.JWT_LIFETIME,
-    }
-  )
-}
-
-CommunitySchema.methods.comparePassword = async function (userPassword) {
-  // if async keyword is used here (in mongoose instance) then make sure you use 'await' keyword while calling this function
-  const isMatch = await bcrypt.compare(userPassword, this.password)
-  return isMatch
-}
-
 // CommunitySchema.plugin(normalize)
 // module.exports = mongoose.model('Community', CommunitySchema)
 export default mongoose.model('Community', CommunitySchema)
