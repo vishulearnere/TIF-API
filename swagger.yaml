@@ -1,0 +1,349 @@
+openapi: 3.0.0
+info:
+  title: Community API
+  contact:
+    name: Vishal Shivhare
+    url: https://linktr.ee/curiousvishu
+    email: vishal.shivhare.345@gmail.com
+  version: '1.0'
+servers:
+- url: https://community-api-zje2.onrender.com/v1/
+  variables: {}
+paths:
+  /auth/signup:
+    post:
+      tags:
+      - Auth
+      summary: Sign Up
+      operationId: SignUp
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SignUpRequest'
+              - example:
+                  name: ganesh
+                  email: ganesh10@gmail.com
+                  password: secret
+            example:
+              name: ganesh
+              email: ganesh10@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/signin:
+    post:
+      tags:
+      - Auth
+      summary: Sign In
+      operationId: SignIn
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SignInRequest'
+              - example:
+                  email: ganesh10@gmail.com
+                  password: secret
+            example:
+              email: ganesh10@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/me:
+    get:
+      tags:
+      - User
+      summary: Get Me
+      operationId: GetMe
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /role:
+    post:
+      tags:
+      - Role
+      summary: Create Role
+      operationId: CreateRole
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateRoleRequest'
+              - example:
+                  name: Community Moderator
+            example:
+              name: Community Moderator
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    get:
+      tags:
+      - Role
+      summary: Get All Roles
+      operationId: GetAllRoles
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /community:
+    post:
+      tags:
+      - Community
+      summary: Create Community
+      operationId: CreateCommunity
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateCommunityRequest'
+              - example:
+                  name: TIF-Community
+            example:
+              name: TIF-Community
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    get:
+      tags:
+      - Community
+      summary: GET All Community
+      operationId: GETAllCommunity
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /community/{id}/members:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The Commmunity ID
+    get:
+      tags:
+      - Community
+      summary: GET All Members of a Community
+      operationId: GETAllMembersofaCommunity
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /community/me/owner:
+    get:
+      tags:
+      - Community
+      summary: GET My Owned Communitiy
+      operationId: GETMyOwnedCommunitiy
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /community/me/member:
+    get:
+      tags:
+      - Community
+      summary: GET My Joined Community
+      operationId: GETMyJoinedCommunity
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /member:
+    post:
+      tags:
+      - Member
+      summary: Add Member
+      operationId: AddMember
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AddMemberRequest'
+              - example:
+                  community: "7109275539998271547"
+                  user: "7107401682120844591"
+                  role: "7109264995323136877"
+            example:
+              community: "7109275539998271547"
+              user: "7107401682120844591"
+              role: "7109264995323136877"
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /member/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The Member ID
+    delete:
+      tags:
+      - Member
+      summary: Remove Member
+      operationId: RemoveMember
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    SignUpRequest:
+      title: SignUpRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: ganesh
+        email: ganesh10@gmail.com
+        password: secret
+    SignInRequest:
+      title: SignInRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: ganesh10@gmail.com
+        password: secret
+    CreateRoleRequest:
+      title: CreateRoleRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: Community Moderator
+    CreateCommunityRequest:
+      title: CreateCommunityRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: TIF-Community
+    AddMemberRequest:
+      title: AddMemberRequest
+      required:
+      - community
+      - user
+      - role
+      type: object
+      properties:
+        community:
+          type: string
+        user:
+          type: string
+        role:
+          type: string
+      example:
+        community: "7109275539998271547"
+        user: "7107401682120844591"
+        role: "7109264995323136877"
+    
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Auth
+  description: ''
+- name: User
+  description: ''
+- name: Role
+  description: ''
+- name: Community
+  description: ''
+- name: Member
+  description: ''

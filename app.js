@@ -15,6 +15,11 @@ import rateLimiter from 'express-rate-limit'
 import cors from 'cors'
 import xss from 'xss-clean'
 
+// Swagger 
+import swaggerUI from 'swagger-ui-express'
+import YAML from 'yamljs'
+
+const swaggerDocument = YAML.load('./swagger.yaml')
 
 const app = express()
 
@@ -46,6 +51,13 @@ import authentication from './middleware/authentication.js'
 import notFoundMiddleware from './middleware/not-found.js'
 import errorHandlerMiddleware from './middleware/error-handler.js'
 
+app.get('/', (req, res) => {
+  res.status(200).send('<h1>Hello Vishal</h1> <h2>TIF - Community API</h2><a href="/api-docs">Documentation</a>')
+})
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
+
+
 app.use('/v1/auth', authRouter)
 app.use('/v1/role', authentication, roleRouter)
 app.use('/v1/community', authentication, communityRouter)
@@ -55,9 +67,6 @@ app.use(errorHandlerMiddleware)
 
 
 
-app.get('/', (req, res) => {
-  res.status(200).send('Hello Vishal')
-})
 
 
 const port = process.env.PORT || 3000
