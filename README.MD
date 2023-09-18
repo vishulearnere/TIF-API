@@ -13,12 +13,12 @@
 
 #  
 - [x] Adhered to the response structure.
-- [x] used a database for storing data.
-- [x] connected the database to the application using an ODM.
-- [x] the URL for GitLab / GitHub Repository, accessible to public.
-- [x] deployed the code, and the URL is publicly accessible. 
+- [x] Used a database for storing data.
+- [x] Connected the database to the application using an ODM.
+- [x] The URL for GitLab / GitHub Repository, accessible to public.
+- [x] Deployed the code, and the URL is publicly accessible. 
 - [x] Library: @theinternetfolks/snowflake to generate unique IDs instead of autoincrement, UUID or MongoDB ObjectID
-– [ ] Item 2
+
 
 ##  [The API is live Here](https://community-api-zje2.onrender.com/)
 ##  [You can Interact with The API directly from the Browser By clicking Here ](https://community-api-zje2.onrender.com/api-docs)
@@ -263,3 +263,6 @@ If You see
 ## [ Click Here to See All Functionalities Working ](https://community-api-zje2.onrender.com/api-docs) <br>
 
 ## [My All Live Projects Link ](https://linktr.ee/curiousvishu)
+
+## BackGround Rough Work 
+
