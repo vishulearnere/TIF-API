@@ -265,5 +265,5 @@ If You see
 ## [My All Live Projects Link ](https://linktr.ee/curiousvishu)
 
 ## BackGround Rough Work 
-![Rough Work](/img-1.jpg)
-![Rough Work](/img-2.jpg)
+![Rough Work](img-1.jpg)
+![Rough Work](img-2.jpg)
