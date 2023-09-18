@@ -1,10 +1,9 @@
-
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import User from './User.js'
-import Community from './Community.js' 
-import Role from './Role.js'
+import User from './User.js' 
+import Community from './Community.js'
+import Role from './Role.js' 
 import { Snowflake } from '@theinternetfolks/snowflake'
 import dotenv from 'dotenv'
 
